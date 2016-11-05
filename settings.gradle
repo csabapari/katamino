@@ -1,0 +1,4 @@
+rootProject.name = 'katamino'
+include 'engine'
+findProject(':engine')?.name = 'katamino-engine'
+
