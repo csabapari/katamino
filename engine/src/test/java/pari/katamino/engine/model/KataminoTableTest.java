@@ -3,7 +3,9 @@ package pari.katamino.engine.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -42,7 +44,29 @@ public class KataminoTableTest {
     }
 
     @Test
-    public void canAddThreeItems() {
+    public void cannotAddAddedItem() {
+        final int[][] expectedTable = new int[][] {
+                {1, 1, 1, 1, 0},
+                {1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0}
+        };
+
+        final int rows = 3;
+        final int columns = 5;
+
+        KataminoTable table = new KataminoTable(rows, columns);
+
+        KataminoItem item = new KataminoItem(1, new boolean[][] {{true, true, true, true}, {true, false, false, false}});
+
+        table.addItem(item);
+
+        table.addItem(item);
+
+        this.assertTable(expectedTable, table);
+    }
+
+    @Test
+    public void canAddThreeItemsAndBecomeComplete() {
         final int[][] expectedTable = new int[][] {
                 {1, 1, 1, 1, 3},
                 {1, 2, 2, 2, 3},
@@ -56,12 +80,16 @@ public class KataminoTableTest {
 
         KataminoItem item = new KataminoItem(1, new boolean[][] {{true, true, true, true}, {true, false, false, false}});
         table.addItem(item);
+        Assert.assertFalse(table.isComplete());
 
         item = new KataminoItem(2, new boolean[][]{{false, true, true, true}, {true, true, false, false}});
         table.addItem(item);
+        Assert.assertFalse(table.isComplete());
+
 
         item = new KataminoItem(3, new boolean[][]{{false, false, true}, {false, false, true}, {true, true, true}});
         table.addItem(item);
+        Assert.assertTrue(table.isComplete());
 
         this.assertTable(expectedTable, table);
     }

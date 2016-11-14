@@ -4,7 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pari.katamino.engine.util.PrimitiveArrays;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
+ * Represents a katamino table. It is modelled with a int matrix. Initially all values are EMPTY=0.
+ * When katamino item is added the certain matrix position contains the id if the item.
+ *
  * Created by xavi on 2016.09.26..
  */
 public class KataminoTable {
@@ -18,13 +24,40 @@ public class KataminoTable {
 
     private int[][] table;
 
+    private List<Integer> addedIds;
+
+    /**
+     * Creates a katamino table with given number of rows and columns with EMPTY values.
+     */
     public KataminoTable(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
 
         this.table = new int[rows][columns];
+        this.addedIds = new ArrayList<>();
 
         this.resetTable();
+    }
+
+    /**
+     * Creates a new KataminoTable based on given one. This is copy constructor.
+     */
+    public KataminoTable(KataminoTable kataminoTable) {
+        if(kataminoTable == null) {
+            throw new IllegalArgumentException("kataminoTable cannot be null");
+        }
+
+        this.rows = kataminoTable.rows;
+        this.columns = kataminoTable.columns;
+
+        this.table = new int[rows][columns];
+        for (int i = 0; i < kataminoTable.rows; i++) {
+            for (int j = 0; j < kataminoTable.columns; j++) {
+                this.table[i][j] = kataminoTable.table[i][j];
+            }
+        }
+
+        this.addedIds = new ArrayList<>(kataminoTable.addedIds);
     }
 
     /**
@@ -36,14 +69,12 @@ public class KataminoTable {
                 this.table[i][j] = EMPTY;
             }
         }
-    }
 
-    public int getTableValue(int row, int column) {
-        return this.table[row][column];
+        this.addedIds.clear();
     }
 
     /**
-     * This is going to be the operator.
+     * This is going to be the operator: add an item in certain rotation.
      * At first checks that it is possible to add the given item.
      * If possible then place an item to first possible place.
      * Free place is checked starting from top left corner then walking right and bottom.
@@ -70,6 +101,7 @@ public class KataminoTable {
             }
         }
 
+        this.addedIds.add(item.getId());
         return true;
     }
 
@@ -79,7 +111,11 @@ public class KataminoTable {
      */
     public Position canAddItem(KataminoItem item) {
         if(item == null) {
-            throw new IllegalArgumentException("item");
+            throw new IllegalArgumentException("item cannot be null");
+        }
+
+        if(this.addedIds.contains(item.getId())) {
+            return null;
         }
 
         for (int i = 0; i < table.length; i++) {
@@ -94,9 +130,29 @@ public class KataminoTable {
     }
 
     /**
+     * Checks whether the table is full with items.
+     * @return If it has at least one empty cell then it return false, otherwise true.
+     */
+    public boolean isComplete() {
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                if(this.table[i][j] == EMPTY) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Removes the given item from the table;
      */
     public void removeItem(KataminoItem item) {
+        if(item == null) {
+            throw new IllegalArgumentException("item cannot be null");
+        }
+
         for (int i = 0; i < this.table.length; i++) {
             for (int j = 0; j < this.table[i].length; j++) {
                 if(this.table[i][j] == item.getId()) {
@@ -111,6 +167,7 @@ public class KataminoTable {
         StringBuilder sb = new StringBuilder();
         String lineSeparator = System.lineSeparator();
 
+        sb.append(lineSeparator);
         sb.append("Table");
         sb.append(lineSeparator);
         for (int i = 0; i < this.table.length; i++) {
@@ -119,6 +176,13 @@ public class KataminoTable {
         }
 
         return sb.toString();
+    }
+
+    /**
+     * This is used for testing only!
+     */
+    int getTableValue(int row, int column) {
+        return this.table[row][column];
     }
 
     private boolean canMatchItem(KataminoItem item, int row, int column) {

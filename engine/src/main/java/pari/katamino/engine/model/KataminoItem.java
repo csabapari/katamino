@@ -3,6 +3,19 @@ package pari.katamino.engine.model;
 import pari.katamino.engine.util.PrimitiveArrays;
 
 /**
+ * Defines a katamino item with a boolean map (or matrix).
+ * For example if the map:
+ * <pre>
+ * false false true false
+ * true  true  true true
+ * </pre>
+ * then
+ * <ul>
+ * <li>getRows returns: 2</li>
+ * <li>getColumns returns: 4</li>
+ * <li>getFirstColumnIndex: 2</li>
+ * </ul>
+ *
  * Created by xavi on 2016.09.26..
  */
 public class KataminoItem {
@@ -14,13 +27,11 @@ public class KataminoItem {
      */
     private boolean[][] map;
 
-    /**
-     * The first column which has true value in the first row.
-     */
     private int firstColumnIndex;
 
     /**
-     * Creates a katamino item from an input map. The input map can have
+     * Creates a katamino item from an input map. The input map must not have empty rows or columns.
+     * Empty means all position in the row is false.
      * @param id
      * @param map
      */
@@ -41,14 +52,23 @@ public class KataminoItem {
         }
     }
 
+    /**
+     * The id of the katamino item. Each item must have unique id.
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     * The number of rows of the item map.
+     */
     public int getRows() {
         return this.map.length;
     }
 
+    /**
+     * The number of columns of the item map.
+     */
     public int getColumns() {
         if(this.map.length == 0) {
             return 0;
@@ -56,10 +76,18 @@ public class KataminoItem {
         return this.map[0].length;
     }
 
+    /**
+     * The first column which has true value in the first row.
+     * This important when the item is added to the katamino table.
+     * See {@link KataminoTable#addItem(KataminoItem)} and {@link KataminoTable#canAddItem(KataminoItem)}
+     */
     public int getFirstColumnIndex() {
         return this.firstColumnIndex;
     }
 
+    /**
+     * Provides the value of the item map in a certain position.
+     */
     public boolean getMapValue(int row, int column) {
         if(row < 0 && row >= this.map.length)  {
             throw new IllegalArgumentException("row");
@@ -72,8 +100,8 @@ public class KataminoItem {
     }
 
     /**
-     * Rotate the katamino item.
-     * Possible turn degrees: 0, 90, 180, 270
+     * Rotate the katamino item and returns a new katamino item.
+     * Possible turn degrees: 0, 90, 180, 270. See {@link TurnDegrees}
      */
     public KataminoItem rotate(TurnDegrees variant) {
         boolean[][] result = new boolean[0][0];
@@ -120,6 +148,13 @@ public class KataminoItem {
         return new KataminoItem(this.id, result);
     }
 
+    /**
+     * This is not perfect like this.
+     * Two katamino items are identical if they have same id, map and firstColumnIndex.
+     * QUESTION: for example an item and its 90 degree rotation is also the same.
+     * ANSWER: Right now this used during testing, there it is needed in that way.
+     * Therefore be careful when it is used in other parts of the application!
+     */
     @Override
     public boolean equals(Object obj) {
         if(!(obj instanceof KataminoItem)) {
@@ -127,6 +162,10 @@ public class KataminoItem {
         }
 
         KataminoItem item = (KataminoItem)obj;
+
+        if(this.id != item.id) {
+            return false;
+        }
 
         for (int i = 0; i < this.map.length; i++) {
             for (int j = 0; j < this.map[i].length; j++) {
