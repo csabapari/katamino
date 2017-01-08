@@ -11,7 +11,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/engine" />
+            <option value="$PROJECT_DIR$/katamino-engine" />
+            <option value="$PROJECT_DIR$/katamino-console" />
           </set>
         </option>
       </GradleProjectSettings>
