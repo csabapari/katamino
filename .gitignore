@@ -2,5 +2,5 @@
 /katamino-engine/build
 /katamino-console/build
 
-/.idea/workspace.xml
 /.gradle
+/.idea
