@@ -1,13 +1,5 @@
-group 'pari'
-version '0.1.0.0'
-
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
+group GROUP_ID
+version BUILD_VERSION
 
 dependencies {
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'

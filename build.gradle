@@ -1,16 +1,23 @@
-group 'pari'
-version '0.1.0.0'
+group GROUP_ID
+version BUILD_VERSION
 
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+allprojects {
+    apply plugin: 'java'
+    sourceCompatibility = 1.8
+    repositories {
+        mavenCentral()
+    }
 }
 
-dependencies {
-    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.7'
-    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.7'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+project(':katamino-engine') {}
+
+project(':katamino-console') {
+    dependencies {
+        compile project(':katamino-engine')
+    }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = 3.3
+}
+
