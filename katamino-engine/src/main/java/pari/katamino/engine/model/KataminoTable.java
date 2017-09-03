@@ -92,6 +92,7 @@ public class KataminoTable {
         }
 
         LOGGER.debug("Trying to add the following item to the table: " + item);
+        LOGGER.debug("Before:" + this);
 
         for (int i = 0; i < item.getRows(); i++) {
             for (int j = 0; j < item.getColumns(); j++) {
@@ -102,6 +103,9 @@ public class KataminoTable {
         }
 
         this.addedIds.add(item.getId());
+
+        LOGGER.debug("After: " + this);
+
         return true;
     }
 

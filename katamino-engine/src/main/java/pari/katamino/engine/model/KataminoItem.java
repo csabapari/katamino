@@ -149,6 +149,25 @@ public class KataminoItem {
     }
 
     /**
+     * Vertically mirrors the item.
+     * @return The mirrored item.
+     */
+    public KataminoItem mirror() {
+        if(this.map.length == 0) {
+            return this;
+        }
+        boolean[][] result = new boolean[this.map.length][this.map[0].length];
+
+        for (int i = 0; i < this.map.length; i++) {
+            for (int j = 0; j < this.map[i].length; j++) {
+                result[i][this.map[i].length - 1 - j] = this.map[i][j];
+            }
+        }
+
+        return new KataminoItem(this.id, result);
+    }
+
+    /**
      * This is not perfect like this.
      * Two katamino items are identical if they have same id, map and firstColumnIndex.
      * QUESTION: for example an item and its 90 degree rotation is also the same.

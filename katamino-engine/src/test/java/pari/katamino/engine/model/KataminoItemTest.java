@@ -59,4 +59,37 @@ public class KataminoItemTest {
         Assert.assertEquals(false, item.getMapValue(0, 2));
         Assert.assertEquals(true, item.getMapValue(1, 2));
     }
+
+    @Test
+    public void canMirror2x4() {
+        KataminoItem expected =  new KataminoItem(1, new boolean[][]{{false, false, true, false}, {true, true, true, true}});
+
+        KataminoItem item =  new KataminoItem(1, new boolean[][]{{false, true, false, false}, {true, true, true, true}});
+
+        KataminoItem mirrored = item.mirror();
+
+        Assert.assertTrue(expected.equals(mirrored));
+    }
+
+    @Test
+    public void canMirror3x2() {
+        KataminoItem expected =  new KataminoItem(1, new boolean[][]{{false, true}, {true, true}, {true, true}});
+
+        KataminoItem item =  new KataminoItem(1, new boolean[][]{{true, false}, {true, true}, {true, true}});
+
+        KataminoItem mirrored = item.mirror();
+
+        Assert.assertTrue(expected.equals(mirrored));
+    }
+
+    @Test
+    public void canMirror3x3() {
+        KataminoItem expected =  new KataminoItem(1, new boolean[][]{{false, false, true}, {false, false, true}, {true, true, true}});
+
+        KataminoItem item =  new KataminoItem(1, new boolean[][]{{true, false, false}, {true, false, false}, {true, true, true}});
+
+        KataminoItem mirrored = item.mirror();
+
+        Assert.assertTrue(expected.equals(mirrored));
+    }
 }

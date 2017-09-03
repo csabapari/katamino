@@ -1,6 +1,9 @@
 /build
 /katamino-engine/build
 /katamino-console/build
+/katamino-engine/out
+/katamino-console/out
 
 /.gradle
 /.idea
+/katamino.iml

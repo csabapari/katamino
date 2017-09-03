@@ -37,6 +37,8 @@ public class BreadthFirstHunter implements SolutionHunter {
         List<KataminoItem> itemsInAllPosition = new ArrayList<>();
         for (KataminoItem item: items) {
             Collections.addAll(itemsInAllPosition, item, item.rotate(TurnDegrees.Ninety), item.rotate(TurnDegrees.HundredEighty), item.rotate(TurnDegrees.TwoHundredSeventy));
+            KataminoItem mirrored = item.mirror();
+            Collections.addAll(itemsInAllPosition, mirrored, mirrored.rotate(TurnDegrees.Ninety), mirrored.rotate(TurnDegrees.HundredEighty), mirrored.rotate(TurnDegrees.TwoHundredSeventy));
         }
 
         Step root = new Step(table, itemsInAllPosition);

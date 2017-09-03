@@ -29,8 +29,10 @@ public class CommandRunner {
         commandInfoMap.put(commandInfo.name(), commandInfo);
     }
 
-    public boolean runCommand(String[] args)
+    public boolean runCommand(String commandWithParameters)
             throws ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+        String[] args = commandWithParameters.split(" ");
+
         Command command = this.parseCommand(args);
 
         if(command == null) {
