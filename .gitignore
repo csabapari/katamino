@@ -1,8 +1,10 @@
 /build
 /katamino-engine/build
 /katamino-console/build
+/katamino-swing-gui/build
 /katamino-engine/out
 /katamino-console/out
+/katamino-swing-gui/out
 
 /.gradle
 /.idea

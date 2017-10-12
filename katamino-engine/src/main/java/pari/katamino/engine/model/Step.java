@@ -73,6 +73,10 @@ public class Step {
         return this.previous;
     }
 
+    public KataminoTable getTable() {
+        return table;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb =  new StringBuilder();

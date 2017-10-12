@@ -166,6 +166,10 @@ public class KataminoTable {
         }
     }
 
+    public int[][] getTable() {
+        return this.table;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

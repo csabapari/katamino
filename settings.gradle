@@ -1,4 +1,5 @@
 rootProject.name = 'katamino'
 include 'katamino-engine'
 include 'katamino-console'
+include 'katamino-swing-gui'
 
