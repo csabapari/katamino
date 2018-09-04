@@ -9,20 +9,6 @@ allprojects {
     }
 }
 
-project(':katamino-engine') {}
-
-project(':katamino-console') {
-    dependencies {
-        compile project(':katamino-engine')
-    }
-}
-
-project(':katamino-swing-gui') {
-    dependencies {
-        compile project(':katamino-engine')
-    }
-}
-
 task wrapper(type: Wrapper) {
     gradleVersion = 3.3
 }
