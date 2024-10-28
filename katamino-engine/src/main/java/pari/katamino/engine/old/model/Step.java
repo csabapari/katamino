@@ -1,4 +1,4 @@
-package pari.katamino.engine.model;
+package pari.katamino.engine.old.model;
 
 import java.util.ArrayList;
 import java.util.List;

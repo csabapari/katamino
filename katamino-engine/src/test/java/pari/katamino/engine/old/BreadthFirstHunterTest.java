@@ -1,10 +1,10 @@
-package pari.katamino.engine;
+package pari.katamino.engine.old;
 
 import org.junit.Assert;
 import org.junit.Test;
-import pari.katamino.engine.model.KataminoItem;
-import pari.katamino.engine.model.KataminoTable;
-import pari.katamino.engine.model.Step;
+import pari.katamino.engine.old.model.KataminoItem;
+import pari.katamino.engine.old.model.KataminoTable;
+import pari.katamino.engine.old.model.Step;
 
 import java.util.ArrayList;
 import java.util.Collections;

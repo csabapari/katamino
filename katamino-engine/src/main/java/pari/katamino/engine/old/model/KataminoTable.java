@@ -1,8 +1,8 @@
-package pari.katamino.engine.model;
+package pari.katamino.engine.old.model;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import pari.katamino.engine.util.PrimitiveArrays;
+import pari.katamino.engine.old.util.PrimitiveArrays;
 
 import java.util.ArrayList;
 import java.util.List;

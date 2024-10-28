@@ -1,6 +1,6 @@
-package pari.katamino.engine.model;
+package pari.katamino.engine.old.model;
 
-import pari.katamino.engine.util.PrimitiveArrays;
+import pari.katamino.engine.old.util.PrimitiveArrays;
 
 /**
  * Defines a katamino item with a boolean map (or matrix).

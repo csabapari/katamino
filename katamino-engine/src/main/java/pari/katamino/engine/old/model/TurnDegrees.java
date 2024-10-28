@@ -1,4 +1,4 @@
-package pari.katamino.engine.model;
+package pari.katamino.engine.old.model;
 
 /**
  * Each item can turned around into four position if turn it with 0, 90, 180 and 270 degree.

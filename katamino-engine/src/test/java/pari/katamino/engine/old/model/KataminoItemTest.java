@@ -1,7 +1,9 @@
-package pari.katamino.engine.model;
+package pari.katamino.engine.old.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pari.katamino.engine.old.model.KataminoItem;
+import pari.katamino.engine.old.model.TurnDegrees;
 
 /**
  * Created by xavi on 2016.09.27..

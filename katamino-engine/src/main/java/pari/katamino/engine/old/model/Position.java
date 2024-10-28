@@ -1,4 +1,4 @@
-package pari.katamino.engine.model;
+package pari.katamino.engine.old.model;
 
 /**
  * Created by xavi on 2016.11.04..

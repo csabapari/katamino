@@ -1,12 +1,9 @@
-package pari.katamino.engine.model;
+package pari.katamino.engine.old.model;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import pari.katamino.engine.old.model.KataminoItem;
+import pari.katamino.engine.old.model.KataminoTable;
 
 /**
  * Created by xavi on 2016.11.02..

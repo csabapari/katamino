@@ -1,7 +1,8 @@
-package pari.katamino.engine.util;
+package pari.katamino.engine.old.util;
 
 import org.junit.Assert;
 import org.junit.Test;
+import pari.katamino.engine.old.util.PrimitiveArrays;
 
 /**
  * Created by xavi on 2016.09.27..
