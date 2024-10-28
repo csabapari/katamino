@@ -2,7 +2,7 @@ group GROUP_ID
 version BUILD_VERSION
 
 dependencies {
-    compile project(':katamino-engine')
+    implementation project(':katamino-engine')
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
 }
